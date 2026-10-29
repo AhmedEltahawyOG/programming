@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Order Confirmation | PEGASUS WEAR</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/main.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="container header-container">
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                PEGASUS
+            </a>
+
+
+            <nav class="nav">
+
+                <ul class="nav-list">
+
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="shop.html">
+                            Shop
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#universe">
+                            Universe
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="index.html#contact">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+
+            <div class="header-icons">
+
+                <a
+                    href="shop.html"
+                    class="header-icon"
+                    aria-label="Back to shop"
+                >
+
+                    <i class="fa-solid fa-bag-shopping"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         ORDER CONFIRMATION
+    ====================================================== -->
+
+    <main>
+
+        <section class="checkout section">
+
+            <div class="container">
+
+
+                <!-- =================================================
+                     PAGE TITLE
+                ================================================== -->
+
+                <div class="checkout-title">
+
+                    <span class="section-eyebrow">
+                        PEGASUS WEAR
+                    </span>
+
+                    <h1>
+                        ORDER CONFIRMATION
+                    </h1>
+
+                    <p>
+                        Track the status of your order.
+                    </p>
+
+                </div>
+
+
+
+                <div class="checkout-layout">
+
+
+                    <!-- =================================================
+                         ORDER DETAILS
+                    ================================================== -->
+
+                    <div class="checkout-form">
+
+
+                        <!-- =================================================
+                             STATUS CARD
+                        ================================================== -->
+
+                        <div class="checkout-card">
+
+                            <div class="order-success">
+
+
+                                <!-- STATUS ICON -->
+
+                                <div
+                                    class="order-success-icon"
+                                    id="order-status-icon"
+                                >
+
+                                    <i class="fa-solid fa-clock"></i>
+
+                                </div>
+
+
+                                <!-- STATUS TITLE -->
+
+                                <h2 id="order-status-title">
+                                    Your order is pending.
+                                </h2>
+
+
+                                <!-- STATUS MESSAGE -->
+
+                                <p id="order-status-message">
+                                    We received your order and it is waiting for confirmation.
+                                </p>
+
+
+                                <!-- STATUS -->
+
+                                <div
+                                    class="order-status"
+                                    id="order-status"
+                                >
+                                    Pending
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- =================================================
+                                 ORDER TRACKING
+                            ================================================== -->
+
+                            <div class="order-tracking">
+
+                                <div
+                                    class="tracking-step"
+                                    data-status="pending"
+                                >
+
+                                    <div class="tracking-icon">
+                                        <i class="fa-solid fa-receipt"></i>
+                                    </div>
+
+                                    <div class="tracking-content">
+
+                                        <strong>
+                                            ORDER PLACED
+                                        </strong>
+
+                                        <span>
+                                            Your order has been received.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="tracking-line"></div>
+
+
+                                <div
+                                    class="tracking-step"
+                                    data-status="confirmed"
+                                >
+
+                                    <div class="tracking-icon">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+
+                                    <div class="tracking-content">
+
+                                        <strong>
+                                            CONFIRMED
+                                        </strong>
+
+                                        <span>
+                                            Your order has been confirmed.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="tracking-line"></div>
+
+
+                                <div
+                                    class="tracking-step"
+                                    data-status="shipped"
+                                >
+
+                                    <div class="tracking-icon">
+                                        <i class="fa-solid fa-truck"></i>
+                                    </div>
+
+                                    <div class="tracking-content">
+
+                                        <strong>
+                                            SHIPPED
+                                        </strong>
+
+                                        <span>
+                                            Your order is on its way.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="tracking-line"></div>
+
+
+                                <div
+                                    class="tracking-step"
+                                    data-status="delivered"
+                                >
+
+                                    <div class="tracking-icon">
+                                        <i class="fa-solid fa-box-open"></i>
+                                    </div>
+
+                                    <div class="tracking-content">
+
+                                        <strong>
+                                            DELIVERED
+                                        </strong>
+
+                                        <span>
+                                            Your order has been delivered.
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- =================================================
+                                 ORDER INFORMATION
+                            ================================================== -->
+
+                            <div class="order-details">
+
+
+                                <div class="checkout-summary-line">
+
+                                    <span>
+                                        Order ID
+                                    </span>
+
+                                    <strong id="order-id">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div class="checkout-summary-line">
+
+                                    <span>
+                                        Customer
+                                    </span>
+
+                                    <strong id="order-customer">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div class="checkout-summary-line">
+
+                                    <span>
+                                        Phone
+                                    </span>
+
+                                    <strong id="order-phone">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div class="checkout-summary-line">
+
+                                    <span>
+                                        Payment
+                                    </span>
+
+                                    <strong id="order-payment">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div class="checkout-summary-line">
+
+                                    <span>
+                                        Date
+                                    </span>
+
+                                    <strong id="order-date">
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             DELIVERY INFORMATION
+                        ================================================== -->
+
+                        <div class="checkout-card">
+
+                            <h2>
+                                Delivery Information
+                            </h2>
+
+
+                            <div class="order-address">
+
+                                <p id="order-address">
+                                    —
+                                </p>
+
+                                <p id="order-city">
+                                    —
+                                </p>
+
+                                <p id="order-area">
+                                    —
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         ORDER SUMMARY
+                    ================================================== -->
+
+                    <aside class="checkout-summary">
+
+                        <div class="checkout-card">
+
+                            <h2>
+                                Your Order
+                            </h2>
+
+
+                            <!-- PRODUCTS -->
+
+                            <div
+                                id="confirmation-items"
+                                class="checkout-items"
+                            >
+                            </div>
+
+
+
+                            <!-- SUBTOTAL -->
+
+                            <div class="checkout-summary-line">
+
+                                <span>
+                                    Subtotal
+                                </span>
+
+                                <strong id="confirmation-subtotal">
+                                    0 EGP
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- SHIPPING -->
+
+                            <div class="checkout-summary-line">
+
+                                <span>
+                                    Shipping
+                                </span>
+
+                                <strong id="confirmation-shipping">
+                                    0 EGP
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- TOTAL -->
+
+                            <div class="checkout-summary-total">
+
+                                <span>
+                                    Total
+                                </span>
+
+                                <strong id="confirmation-total">
+                                    0 EGP
+                                </strong>
+
+                            </div>
+
+
+
+                            <!-- CONTINUE SHOPPING -->
+
+                            <a
+                                href="shop.html"
+                                class="btn btn-primary checkout-submit"
+                            >
+                                CONTINUE SHOPPING
+                            </a>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 PEGASUS WEAR |
+                All Rights Reserved
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         ORDER CONFIRMATION JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           GET SELECTED ORDER
+        ===================================================== */
+
+        let savedOrder = null;
+
+
+        /*
+            New system:
+            pegasusSelectedOrder stores:
+
+            {
+                id: order.id
+            }
+
+            We then find the complete order
+            inside pegasusOrders.
+        */
+
+        const selectedOrderData =
+            JSON.parse(
+                localStorage.getItem(
+                    "pegasusSelectedOrder"
+                )
+            );
+
+
+        const allOrders =
+            JSON.parse(
+                localStorage.getItem(
+                    "pegasusOrders"
+                )
+            ) || [];
+
+
+        if (
+            selectedOrderData &&
+            selectedOrderData.id
+        ) {
+
+            savedOrder =
+                allOrders.find(
+                    (order) =>
+                        order.id ===
+                        selectedOrderData.id
+                ) || null;
+
+        }
+
+
+        /*
+            BACKWARD COMPATIBILITY
+
+            If old data contains the complete
+            order instead of only the ID,
+            use it directly.
+        */
+
+        if (
+            !savedOrder &&
+            selectedOrderData &&
+            selectedOrderData.customer &&
+            selectedOrderData.products
+        ) {
+
+            savedOrder =
+                selectedOrderData;
+
+        }
+
+
+
+        /* =====================================================
+           NO ORDER
+        ===================================================== */
+
+        if (!savedOrder) {
+
+            window.location.href =
+                "shop.html";
+
+        }
+
+
+
+        /* =====================================================
+           LOAD ORDER
+        ===================================================== */
+
+        if (savedOrder) {
+
+
+            /* =================================================
+               ORDER STATUS
+            ================================================= */
+
+            const orderStatus =
+                savedOrder.status ||
+                "pending";
+
+
+
+            /* =================================================
+               STATUS ELEMENTS
+            ================================================= */
+
+            const orderStatusElement =
+                document.getElementById(
+                    "order-status"
+                );
+
+
+            const orderStatusTitle =
+                document.getElementById(
+                    "order-status-title"
+                );
+
+
+            const orderStatusMessage =
+                document.getElementById(
+                    "order-status-message"
+                );
+
+
+            const orderStatusIcon =
+                document.getElementById(
+                    "order-status-icon"
+                );
+
+
+
+            /* =================================================
+               STATUS TEXT
+            ================================================= */
+
+            const statusText =
+                orderStatus
+                    .charAt(0)
+                    .toUpperCase() +
+                orderStatus.slice(1);
+
+
+
+            /* =================================================
+               UPDATE STATUS BADGE
+            ================================================= */
+
+            if (orderStatusElement) {
+
+                orderStatusElement.textContent =
+                    statusText;
+
+
+                orderStatusElement.className =
+                    `order-status order-status-${orderStatus}`;
+
+            }
+
+
+
+            /* =================================================
+               PENDING
+            ================================================= */
+
+            if (
+                orderStatus === "pending"
+            ) {
+
+                if (orderStatusTitle) {
+
+                    orderStatusTitle.textContent =
+                        "Your order is pending.";
+
+                }
+
+
+                if (orderStatusMessage) {
+
+                    orderStatusMessage.textContent =
+                        "We received your order and it is waiting for confirmation.";
+
+                }
+
+
+                if (orderStatusIcon) {
+
+                    orderStatusIcon.innerHTML =
+                        '<i class="fa-solid fa-clock"></i>';
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               CONFIRMED
+            ================================================= */
+
+            else if (
+                orderStatus === "confirmed"
+            ) {
+
+                if (orderStatusTitle) {
+
+                    orderStatusTitle.textContent =
+                        "Your order is confirmed!";
+
+                }
+
+
+                if (orderStatusMessage) {
+
+                    orderStatusMessage.textContent =
+                        "Your order has been confirmed and is being prepared.";
+
+                }
+
+
+                if (orderStatusIcon) {
+
+                    orderStatusIcon.innerHTML =
+                        '<i class="fa-solid fa-check"></i>';
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               SHIPPED
+            ================================================= */
+
+            else if (
+                orderStatus === "shipped"
+            ) {
+
+                if (orderStatusTitle) {
+
+                    orderStatusTitle.textContent =
+                        "Your order has been shipped!";
+
+                }
+
+
+                if (orderStatusMessage) {
+
+                    orderStatusMessage.textContent =
+                        "Your order is on its way to you.";
+
+                }
+
+
+                if (orderStatusIcon) {
+
+                    orderStatusIcon.innerHTML =
+                        '<i class="fa-solid fa-truck"></i>';
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               DELIVERED
+            ================================================= */
+
+            else if (
+                orderStatus === "delivered"
+            ) {
+
+                if (orderStatusTitle) {
+
+                    orderStatusTitle.textContent =
+                        "Your order has been delivered!";
+
+                }
+
+
+                if (orderStatusMessage) {
+
+                    orderStatusMessage.textContent =
+                        "Your Pegasus Wear order has been successfully delivered.";
+
+                }
+
+
+                if (orderStatusIcon) {
+
+                    orderStatusIcon.innerHTML =
+                        '<i class="fa-solid fa-box-open"></i>';
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               CANCELLED
+            ================================================= */
+
+            else if (
+                orderStatus === "cancelled"
+            ) {
+
+                if (orderStatusTitle) {
+
+                    orderStatusTitle.textContent =
+                        "Your order has been cancelled.";
+
+                }
+
+
+                if (orderStatusMessage) {
+
+                    orderStatusMessage.textContent =
+                        "This order is no longer being processed.";
+
+                }
+
+
+                if (orderStatusIcon) {
+
+                    orderStatusIcon.innerHTML =
+                        '<i class="fa-solid fa-xmark"></i>';
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               ORDER TRACKING
+            ================================================= */
+
+            const trackingSteps =
+                document.querySelectorAll(
+                    ".tracking-step"
+                );
+
+
+            const trackingLines =
+                document.querySelectorAll(
+                    ".tracking-line"
+                );
+
+
+            const statusOrder = [
+                "pending",
+                "confirmed",
+                "shipped",
+                "delivered"
+            ];
+
+
+            if (
+                trackingSteps.length &&
+                orderStatus !== "cancelled"
+            ) {
+
+                const currentStatusIndex =
+                    statusOrder.indexOf(
+                        orderStatus
+                    );
+
+
+                trackingSteps.forEach(
+                    (step) => {
+
+                        const stepStatus =
+                            step.dataset.status;
+
+
+                        const stepIndex =
+                            statusOrder.indexOf(
+                                stepStatus
+                            );
+
+
+                        step.classList.remove(
+                            "active",
+                            "completed"
+                        );
+
+
+                        /*
+                            COMPLETED
+                        */
+
+                        if (
+                            currentStatusIndex >
+                            stepIndex
+                        ) {
+
+                            step.classList.add(
+                                "completed"
+                            );
+
+                        }
+
+
+                        /*
+                            CURRENT
+                        */
+
+                        else if (
+                            currentStatusIndex ===
+                            stepIndex
+                        ) {
+
+                            step.classList.add(
+                                "active"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                /*
+                    Update tracking lines
+                */
+
+                trackingLines.forEach(
+                    (line, index) => {
+
+                        line.classList.remove(
+                            "active",
+                            "completed"
+                        );
+
+
+                        if (
+                            currentStatusIndex >
+                            index
+                        ) {
+
+                            line.classList.add(
+                                "completed"
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+
+
+
+            /* =================================================
+               CANCELLED TRACKING
+            ================================================= */
+
+            if (
+                orderStatus === "cancelled"
+            ) {
+
+                trackingSteps.forEach(
+                    (step) => {
+
+                        step.classList.remove(
+                            "active",
+                            "completed"
+                        );
+
+                    }
+                );
+
+
+                trackingLines.forEach(
+                    (line) => {
+
+                        line.classList.remove(
+                            "active",
+                            "completed"
+                        );
+
+                    }
+                );
+
+
+                const cancelledStep =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                cancelledStep.className =
+                    "tracking-step active";
+
+
+                cancelledStep.innerHTML = `
+
+                    <div class="tracking-icon">
+
+                        <i class="fa-solid fa-xmark"></i>
+
+                    </div>
+
+
+                    <div class="tracking-content">
+
+                        <strong>
+                            CANCELLED
+                        </strong>
+
+                        <span>
+                            This order has been cancelled.
+                        </span>
+
+                    </div>
+
+                `;
+
+
+                const tracking =
+                    document.querySelector(
+                        ".order-tracking"
+                    );
+
+
+                if (tracking) {
+
+                    tracking.appendChild(
+                        cancelledStep
+                    );
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               ORDER ID
+            ================================================= */
+
+            const orderId =
+                document.getElementById(
+                    "order-id"
+                );
+
+
+            if (orderId) {
+
+                orderId.textContent =
+                    savedOrder.id ||
+                    "—";
+
+            }
+
+
+
+            /* =================================================
+               CUSTOMER
+            ================================================= */
+
+            const orderCustomer =
+                document.getElementById(
+                    "order-customer"
+                );
+
+
+            if (orderCustomer) {
+
+                const firstName =
+                    savedOrder.customer?.firstName ||
+                    "";
+
+
+                const lastName =
+                    savedOrder.customer?.lastName ||
+                    "";
+
+
+                const customerName =
+                    `${firstName} ${lastName}`
+                        .trim();
+
+
+                orderCustomer.textContent =
+                    customerName ||
+                    "—";
+
+            }
+
+
+
+            /* =================================================
+               PHONE
+            ================================================= */
+
+            const orderPhone =
+                document.getElementById(
+                    "order-phone"
+                );
+
+
+            if (orderPhone) {
+
+                orderPhone.textContent =
+                    savedOrder.customer?.phone ||
+                    "—";
+
+            }
+
+
+
+            /* =================================================
+               PAYMENT
+            ================================================= */
+
+            const orderPayment =
+                document.getElementById(
+                    "order-payment"
+                );
+
+
+            if (orderPayment) {
+
+                if (
+                    savedOrder.payment ===
+                    "cod"
+                ) {
+
+                    orderPayment.textContent =
+                        "Cash on Delivery";
+
+                }
+
+                else {
+
+                    orderPayment.textContent =
+                        "Card";
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               DATE
+            ================================================= */
+
+            const orderDate =
+                document.getElementById(
+                    "order-date"
+                );
+
+
+            if (
+                orderDate &&
+                savedOrder.date
+            ) {
+
+                const parsedDate =
+                    new Date(
+                        savedOrder.date
+                    );
+
+
+                if (
+                    !Number.isNaN(
+                        parsedDate.getTime()
+                    )
+                ) {
+
+                    orderDate.textContent =
+                        parsedDate.toLocaleString(
+                            "en-GB",
+                            {
+                                day: "2-digit",
+                                month: "short",
+                                year: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit"
+                            }
+                        );
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               ADDRESS
+            ================================================= */
+
+            const orderAddress =
+                document.getElementById(
+                    "order-address"
+                );
+
+
+            const orderCity =
+                document.getElementById(
+                    "order-city"
+                );
+
+
+            const orderArea =
+                document.getElementById(
+                    "order-area"
+                );
+
+
+            if (orderAddress) {
+
+                orderAddress.textContent =
+                    savedOrder.customer?.address ||
+                    "—";
+
+            }
+
+
+            if (orderCity) {
+
+                orderCity.textContent =
+                    savedOrder.customer?.city ||
+                    "—";
+
+            }
+
+
+            if (orderArea) {
+
+                orderArea.textContent =
+                    savedOrder.customer?.area ||
+                    "—";
+
+            }
+
+
+
+            /* =================================================
+               PRODUCTS
+            ================================================= */
+
+            const confirmationItems =
+                document.getElementById(
+                    "confirmation-items"
+                );
+
+
+            if (confirmationItems) {
+
+                confirmationItems.innerHTML =
+                    "";
+
+
+                if (
+                    Array.isArray(
+                        savedOrder.products
+                    ) &&
+                    savedOrder.products.length
+                ) {
+
+
+                    savedOrder.products.forEach(
+                        (item) => {
+
+
+                            const quantity =
+                                Number(
+                                    item.quantity
+                                ) || 1;
+
+
+                            const price =
+                                Number(
+                                    item.price
+                                ) || 0;
+
+
+                            const itemTotal =
+                                price *
+                                quantity;
+
+
+                            const element =
+                                document.createElement(
+                                    "div"
+                                );
+
+
+                            element.className =
+                                "checkout-item";
+
+
+                            element.innerHTML = `
+
+                                <div>
+
+                                    <h4>
+                                        ${item.name || "Product"}
+                                    </h4>
+
+                                    <p>
+                                        ${quantity} × ${price} EGP
+                                    </p>
+
+                                </div>
+
+
+                                <strong>
+                                    ${itemTotal} EGP
+                                </strong>
+
+                            `;
+
+
+                            confirmationItems.appendChild(
+                                element
+                            );
+
+                        }
+                    );
+
+                }
+
+                else {
+
+                    confirmationItems.innerHTML = `
+
+                        <div class="checkout-item">
+
+                            <div>
+
+                                <h4>
+                                    No products found
+                                </h4>
+
+                                <p>
+                                    This order does not contain product details.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+
+            }
+
+
+
+            /* =================================================
+               TOTALS
+            ================================================= */
+
+            const subtotal =
+                Number(
+                    savedOrder.subtotal
+                ) || 0;
+
+
+            const shipping =
+                Number(
+                    savedOrder.shipping
+                ) || 0;
+
+
+            const total =
+                Number(
+                    savedOrder.total
+                ) ||
+                subtotal + shipping;
+
+
+
+            /* =================================================
+               SUBTOTAL
+            ================================================= */
+
+            const confirmationSubtotal =
+                document.getElementById(
+                    "confirmation-subtotal"
+                );
+
+
+            if (confirmationSubtotal) {
+
+                confirmationSubtotal.textContent =
+                    `${subtotal} EGP`;
+
+            }
+
+
+
+            /* =================================================
+               SHIPPING
+            ================================================= */
+
+            const confirmationShipping =
+                document.getElementById(
+                    "confirmation-shipping"
+                );
+
+
+            if (confirmationShipping) {
+
+                confirmationShipping.textContent =
+                    `${shipping} EGP`;
+
+            }
+
+
+
+            /* =================================================
+               TOTAL
+            ================================================= */
+
+            const confirmationTotal =
+                document.getElementById(
+                    "confirmation-total"
+                );
+
+
+            if (confirmationTotal) {
+
+                confirmationTotal.textContent =
+                    `${total} EGP`;
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

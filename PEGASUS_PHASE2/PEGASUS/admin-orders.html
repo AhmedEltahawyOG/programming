@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Orders | PEGASUS WEAR</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/main.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="container header-container">
+
+            <a
+                href="index.html"
+                class="logo"
+            >
+                PEGASUS
+            </a>
+
+
+            <nav class="nav">
+
+                <ul class="nav-list">
+
+                    <li>
+                        <a href="index.html">
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="shop.html">
+                            Shop
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="order-history.html">
+                            Order History
+                        </a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         ADMIN ORDERS
+    ====================================================== -->
+
+    <main>
+
+        <section class="checkout section">
+
+            <div class="container">
+
+
+                <!-- =================================================
+                     TITLE
+                ================================================== -->
+
+                <div class="checkout-title">
+
+                    <span class="section-eyebrow">
+                        PEGASUS WEAR
+                    </span>
+
+                    <h1>
+                        ORDERS
+                    </h1>
+
+                    <p>
+                        Manage and update customer orders.
+                    </p>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     ORDERS
+                ================================================== -->
+
+                <div id="admin-orders">
+                </div>
+
+
+
+                <!-- =================================================
+                     EMPTY
+                ================================================== -->
+
+                <div
+                    id="admin-empty"
+                    class="checkout-card"
+                    style="display: none;"
+                >
+
+                    <div class="order-success">
+
+                        <div class="order-success-icon">
+
+                            <i class="fa-solid fa-box-open"></i>
+
+                        </div>
+
+                        <h2>
+                            NO ORDERS
+                        </h2>
+
+                        <p>
+                            There are no customer orders yet.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-bottom">
+
+            <p>
+                © 2026 PEGASUS WEAR |
+                All Rights Reserved
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         ADMIN ORDERS JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           GET ORDERS
+        ===================================================== */
+
+        let orders =
+            JSON.parse(
+                localStorage.getItem(
+                    "pegasusOrders"
+                )
+            ) || [];
+
+
+
+        const ordersContainer =
+            document.getElementById(
+                "admin-orders"
+            );
+
+
+        const emptyOrders =
+            document.getElementById(
+                "admin-empty"
+            );
+
+
+
+        /* =====================================================
+           SAVE ORDERS
+        ===================================================== */
+
+        function saveOrders() {
+
+            localStorage.setItem(
+                "pegasusOrders",
+                JSON.stringify(orders)
+            );
+
+        }
+
+
+
+        /* =====================================================
+           STATUS LABEL
+        ===================================================== */
+
+        function getStatusLabel(status) {
+
+            if (!status) {
+
+                return "Pending";
+
+            }
+
+
+            return (
+                status.charAt(0).toUpperCase() +
+                status.slice(1)
+            );
+
+        }
+
+
+
+        /* =====================================================
+           UPDATE ORDER STATUS
+        ===================================================== */
+
+        function updateOrderStatus(
+            orderId,
+            newStatus
+        ) {
+
+            const order =
+                orders.find(
+                    item =>
+                        item.id === orderId
+                );
+
+
+            if (!order) return;
+
+
+            /* UPDATE MAIN ORDER */
+
+            order.status =
+                newStatus;
+
+
+            /* SAVE ORDERS */
+
+            saveOrders();
+
+
+
+            /* =================================================
+               UPDATE LAST ORDER
+            ================================================= */
+
+            const lastOrder =
+                JSON.parse(
+                    localStorage.getItem(
+                        "pegasusLastOrder"
+                    )
+                );
+
+
+            if (
+                lastOrder &&
+                lastOrder.id === orderId
+            ) {
+
+                lastOrder.status =
+                    newStatus;
+
+
+                localStorage.setItem(
+                    "pegasusLastOrder",
+                    JSON.stringify(
+                        lastOrder
+                    )
+                );
+
+            }
+
+
+
+            /* =================================================
+               UPDATE SELECTED ORDER
+            ================================================= */
+
+            const selectedOrder =
+                JSON.parse(
+                    localStorage.getItem(
+                        "pegasusSelectedOrder"
+                    )
+                );
+
+
+            if (
+                selectedOrder &&
+                selectedOrder.id === orderId
+            ) {
+
+                selectedOrder.status =
+                    newStatus;
+
+
+                localStorage.setItem(
+                    "pegasusSelectedOrder",
+                    JSON.stringify(
+                        selectedOrder
+                    )
+                );
+
+            }
+
+
+
+            /* RENDER */
+
+            renderOrders();
+
+        }
+
+
+
+        /* =====================================================
+           RENDER ORDERS
+        ===================================================== */
+
+        function renderOrders() {
+
+
+            if (!ordersContainer) return;
+
+
+            ordersContainer.innerHTML =
+                "";
+
+
+            /* =================================================
+               EMPTY
+            ================================================= */
+
+            if (
+                !Array.isArray(orders) ||
+                orders.length === 0
+            ) {
+
+                if (emptyOrders) {
+
+                    emptyOrders.style.display =
+                        "block";
+
+                }
+
+                return;
+
+            }
+
+
+            if (emptyOrders) {
+
+                emptyOrders.style.display =
+                    "none";
+
+            }
+
+
+
+            /* =================================================
+               REVERSE ORDERS
+            ================================================= */
+
+            const reversedOrders =
+                [...orders].reverse();
+
+
+
+            reversedOrders.forEach(
+                (order) => {
+
+
+                    const customer =
+                        order.customer || {};
+
+
+                    const customerName =
+                        `${customer.firstName || ""} ${customer.lastName || ""}`
+                            .trim() ||
+                        "Customer";
+
+
+                    const phone =
+                        customer.phone ||
+                        "—";
+
+
+                    const status =
+                        order.status ||
+                        "pending";
+
+
+                    const subtotal =
+                        Number(
+                            order.subtotal
+                        ) || 0;
+
+
+                    const shipping =
+                        Number(
+                            order.shipping
+                        ) || 0;
+
+
+                    const total =
+                        Number(
+                            order.total
+                        ) ||
+                        subtotal + shipping;
+
+
+                    const products =
+                        Array.isArray(
+                            order.products
+                        )
+                            ? order.products
+                            : [];
+
+
+                    const productCount =
+                        products.reduce(
+                            (
+                                sum,
+                                item
+                            ) =>
+                                sum +
+                                (
+                                    Number(
+                                        item.quantity
+                                    ) || 1
+                                ),
+                            0
+                        );
+
+
+                    let date =
+                        "—";
+
+
+                    if (order.date) {
+
+                        date =
+                            new Date(
+                                order.date
+                            ).toLocaleString(
+                                "en-GB",
+                                {
+                                    day:
+                                        "2-digit",
+
+                                    month:
+                                        "short",
+
+                                    year:
+                                        "numeric",
+
+                                    hour:
+                                        "2-digit",
+
+                                    minute:
+                                        "2-digit"
+                                }
+                            );
+
+                    }
+
+
+
+                    /* =================================================
+                       ORDER CARD
+                    ================================================== */
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "checkout-card order-card";
+
+
+
+                    card.innerHTML = `
+
+                        <div class="order-card-header">
+
+                            <div>
+
+                                <span class="section-eyebrow">
+                                    ORDER
+                                </span>
+
+                                <h2>
+                                    ${order.id || "—"}
+                                </h2>
+
+                            </div>
+
+
+                            <span
+                                class="order-status order-status-${status}"
+                            >
+                                ${getStatusLabel(status)}
+                            </span>
+
+                        </div>
+
+
+
+                        <div class="order-card-info">
+
+
+                            <div>
+
+                                <span>
+                                    Customer
+                                </span>
+
+                                <strong>
+                                    ${customerName}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Phone
+                                </span>
+
+                                <strong>
+                                    ${phone}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Products
+                                </span>
+
+                                <strong>
+                                    ${productCount}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Total
+                                </span>
+
+                                <strong>
+                                    ${total} EGP
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="order-card-info">
+
+                            <div>
+
+                                <span>
+                                    Date
+                                </span>
+
+                                <strong>
+                                    ${date}
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Payment
+                                </span>
+
+                                <strong>
+                                    ${
+                                        order.payment === "cod"
+                                            ? "Cash on Delivery"
+                                            : "Card"
+                                    }
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- =================================================
+                             STATUS CONTROLS
+                        ================================================== -->
+
+                        <div class="order-card-actions">
+
+
+                            <label
+                                for="status-${order.id}"
+                            >
+                                Order Status
+                            </label>
+
+
+                            <select
+                                id="status-${order.id}"
+                                class="order-status-select"
+                                data-order-id="${order.id}"
+                            >
+
+                                <option
+                                    value="pending"
+                                    ${
+                                        status === "pending"
+                                            ? "selected"
+                                            : ""
+                                    }
+                                >
+                                    Pending
+                                </option>
+
+
+                                <option
+                                    value="confirmed"
+                                    ${
+                                        status === "confirmed"
+                                            ? "selected"
+                                            : ""
+                                    }
+                                >
+                                    Confirmed
+                                </option>
+
+
+                                <option
+                                    value="shipped"
+                                    ${
+                                        status === "shipped"
+                                            ? "selected"
+                                            : ""
+                                    }
+                                >
+                                    Shipped
+                                </option>
+
+
+                                <option
+                                    value="delivered"
+                                    ${
+                                        status === "delivered"
+                                            ? "selected"
+                                            : ""
+                                    }
+                                >
+                                    Delivered
+                                </option>
+
+
+                                <option
+                                    value="cancelled"
+                                    ${
+                                        status === "cancelled"
+                                            ? "selected"
+                                            : ""
+                                    }
+                                >
+                                    Cancelled
+                                </option>
+
+                            </select>
+
+
+                            <button
+                                type="button"
+                                class="btn btn-primary view-admin-order"
+                                data-order-id="${order.id}"
+                            >
+                                VIEW ORDER
+                            </button>
+
+                        </div>
+
+                    `;
+
+
+
+                    /* =================================================
+                       STATUS SELECT
+                    ================================================== */
+
+                    const statusSelect =
+                        card.querySelector(
+                            ".order-status-select"
+                        );
+
+
+                    if (statusSelect) {
+
+                        statusSelect.addEventListener(
+                            "change",
+                            () => {
+
+                                const newStatus =
+                                    statusSelect.value;
+
+
+                                updateOrderStatus(
+                                    order.id,
+                                    newStatus
+                                );
+
+                            }
+                        );
+
+                    }
+
+
+
+                    /* =================================================
+                       VIEW ORDER
+                    ================================================== */
+
+                    const viewButton =
+                        card.querySelector(
+                            ".view-admin-order"
+                        );
+
+
+                    if (viewButton) {
+
+                        viewButton.addEventListener(
+                            "click",
+                            () => {
+
+                                localStorage.setItem(
+                                    "pegasusSelectedOrder",
+                                    JSON.stringify(
+                                        order
+                                    )
+                                );
+
+
+                                window.location.href =
+                                    "order-confirmation.html";
+
+                            }
+                        );
+
+                    }
+
+
+
+                    ordersContainer.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           INITIAL RENDER
+        ===================================================== */
+
+        renderOrders();
+
+
+    </script>
+
+
+</body>
+
+</html>

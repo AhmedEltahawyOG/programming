@@ -1,0 +1,2748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Dashboard | PEGASUS WEAR</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/main.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           ADMIN PRODUCT MANAGEMENT
+        ====================================================== */
+
+        .admin-products-section {
+            margin-top: 60px;
+        }
+
+
+        .admin-section-title {
+            margin-bottom: 25px;
+        }
+
+
+        .admin-products-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+
+        .admin-products-search {
+            flex: 1;
+            min-width: 240px;
+        }
+
+
+        .admin-products-search input,
+        .admin-products-filter select {
+
+            width: 100%;
+            padding: 14px 16px;
+
+            background: rgba(255,255,255,0.03);
+
+            border: 1px solid rgba(255,255,255,0.12);
+
+            color: inherit;
+
+            border-radius: 6px;
+
+            outline: none;
+
+            font-family: inherit;
+
+        }
+
+
+        .admin-products-filter {
+            width: 220px;
+        }
+
+
+        .admin-product-list {
+            display: grid;
+            gap: 15px;
+        }
+
+
+        .admin-product-row {
+
+            display: grid;
+
+            grid-template-columns:
+                70px
+                minmax(180px, 1fr)
+                120px
+                120px
+                100px
+                auto;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 18px;
+
+            background: rgba(255,255,255,0.025);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 8px;
+
+        }
+
+
+        .admin-product-image {
+
+            width: 65px;
+            height: 65px;
+
+            object-fit: cover;
+
+            border-radius: 6px;
+
+            background: #111;
+
+        }
+
+
+        .admin-product-info h3 {
+
+            margin: 0 0 5px;
+
+            font-size: 15px;
+
+        }
+
+
+        .admin-product-info p {
+
+            margin: 0;
+
+            opacity: .6;
+
+            font-size: 12px;
+
+        }
+
+
+        .admin-product-category {
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            opacity: .7;
+
+        }
+
+
+        .admin-product-price {
+
+            font-weight: 700;
+
+        }
+
+
+        .admin-product-stock {
+
+            font-size: 13px;
+
+        }
+
+
+        .stock-good {
+            color: #7ee787;
+        }
+
+
+        .stock-low {
+            color: #f2cc60;
+        }
+
+
+        .stock-out {
+            color: #ff6b6b;
+        }
+
+
+        .admin-product-actions {
+
+            display: flex;
+
+            gap: 8px;
+
+            justify-content: flex-end;
+
+        }
+
+
+        .admin-product-action {
+
+            width: 38px;
+            height: 38px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            background: transparent;
+
+            color: inherit;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+
+        }
+
+
+        .admin-product-action:hover {
+
+            background: rgba(255,255,255,.08);
+
+        }
+
+
+        .admin-product-action.delete:hover {
+
+            color: #ff6b6b;
+
+            border-color: #ff6b6b;
+
+        }
+
+
+        .admin-product-empty {
+
+            padding: 50px 20px;
+
+            text-align: center;
+
+            opacity: .6;
+
+        }
+
+
+        /* =====================================================
+           PRODUCT MODAL
+        ====================================================== */
+
+        .product-modal-overlay {
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0,0,0,.78);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            z-index: 9999;
+
+        }
+
+
+        .product-modal-overlay.active {
+
+            display: flex;
+
+        }
+
+
+        .product-modal {
+
+            width: 100%;
+
+            max-width: 650px;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            background: #111;
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            border-radius: 10px;
+
+            padding: 30px;
+
+        }
+
+
+        .product-modal-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .product-modal-header h2 {
+
+            margin: 0;
+
+        }
+
+
+        .product-modal-close {
+
+            width: 40px;
+            height: 40px;
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            background: transparent;
+
+            color: inherit;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+        }
+
+
+        .product-form {
+
+            display: grid;
+
+            gap: 18px;
+
+        }
+
+
+        .product-form-group {
+
+            display: grid;
+
+            gap: 8px;
+
+        }
+
+
+        .product-form-group label {
+
+            font-size: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            opacity: .7;
+
+        }
+
+
+        .product-form-group input,
+        .product-form-group select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            background: rgba(255,255,255,.03);
+
+            border: 1px solid rgba(255,255,255,.12);
+
+            color: inherit;
+
+            border-radius: 5px;
+
+            outline: none;
+
+            font-family: inherit;
+
+        }
+
+
+        .product-form-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+
+        }
+
+
+        .product-form-actions {
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 10px;
+
+        }
+
+
+        .admin-cancel-btn {
+
+            border: 1px solid rgba(255,255,255,.15);
+
+            background: transparent;
+
+            color: inherit;
+
+            padding: 12px 20px;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .admin-product-row {
+
+                grid-template-columns: 60px 1fr auto;
+
+            }
+
+            .admin-product-category,
+            .admin-product-price,
+            .admin-product-stock {
+
+                display: none;
+
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .product-form-row {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .product-modal {
+
+                padding: 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="header">
+
+    <div class="container header-container">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            PEGASUS
+        </a>
+
+
+        <nav class="nav">
+
+            <ul class="nav-list">
+
+                <li>
+                    <a href="admin-dashboard.html">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="admin-orders.html">
+                        Orders
+                    </a>
+                </li>
+
+                <li>
+                    <a href="shop.html">
+                        Store
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html">
+                        Website
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <div class="header-icons">
+
+            <a
+                href="admin-orders.html"
+                class="header-icon"
+                aria-label="Orders"
+            >
+
+                <i class="fa-solid fa-box"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     DASHBOARD
+====================================================== -->
+
+<main>
+
+<section class="checkout section">
+
+<div class="container">
+
+
+<!-- =================================================
+     TITLE
+================================================== -->
+
+<div class="checkout-title">
+
+    <span class="section-eyebrow">
+        PEGASUS WEAR
+    </span>
+
+    <h1>
+        ADMIN DASHBOARD
+    </h1>
+
+    <p>
+        Manage your store and monitor orders.
+    </p>
+
+</div>
+
+
+
+<!-- =================================================
+     STATISTICS
+================================================== -->
+
+<div class="admin-stats">
+
+
+    <div class="checkout-card admin-stat-card">
+
+        <div class="admin-stat-icon">
+            <i class="fa-solid fa-box"></i>
+        </div>
+
+        <div>
+
+            <span>
+                Total Orders
+            </span>
+
+            <strong id="stat-total-orders">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="checkout-card admin-stat-card">
+
+        <div class="admin-stat-icon">
+            <i class="fa-solid fa-clock"></i>
+        </div>
+
+        <div>
+
+            <span>
+                Pending
+            </span>
+
+            <strong id="stat-pending">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="checkout-card admin-stat-card">
+
+        <div class="admin-stat-icon">
+            <i class="fa-solid fa-check"></i>
+        </div>
+
+        <div>
+
+            <span>
+                Confirmed
+            </span>
+
+            <strong id="stat-confirmed">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="checkout-card admin-stat-card">
+
+        <div class="admin-stat-icon">
+            <i class="fa-solid fa-truck"></i>
+        </div>
+
+        <div>
+
+            <span>
+                Shipped
+            </span>
+
+            <strong id="stat-shipped">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="checkout-card admin-stat-card">
+
+        <div class="admin-stat-icon">
+            <i class="fa-solid fa-box-open"></i>
+        </div>
+
+        <div>
+
+            <span>
+                Delivered
+            </span>
+
+            <strong id="stat-delivered">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="checkout-card admin-stat-card">
+
+        <div class="admin-stat-icon">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+
+        <div>
+
+            <span>
+                Cancelled
+            </span>
+
+            <strong id="stat-cancelled">
+                0
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================================
+     REVENUE
+================================================== -->
+
+<div class="checkout-card admin-revenue-card">
+
+    <div>
+
+        <span class="section-eyebrow">
+            STORE PERFORMANCE
+        </span>
+
+        <h2>
+            TOTAL REVENUE
+        </h2>
+
+    </div>
+
+    <strong id="stat-revenue">
+        0 EGP
+    </strong>
+
+</div>
+
+
+
+<!-- =================================================
+     QUICK ACTIONS
+================================================== -->
+
+<div class="checkout-title admin-section-title">
+
+    <span class="section-eyebrow">
+        QUICK ACTIONS
+    </span>
+
+    <h2>
+        MANAGEMENT
+    </h2>
+
+</div>
+
+
+<div class="admin-actions">
+
+
+    <a
+        href="admin-orders.html"
+        class="checkout-card admin-action-card"
+    >
+
+        <i class="fa-solid fa-box"></i>
+
+        <div>
+
+            <h3>
+                MANAGE ORDERS
+            </h3>
+
+            <p>
+                View and update customer orders.
+            </p>
+
+        </div>
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+    </a>
+
+
+
+    <a
+        href="shop.html"
+        class="checkout-card admin-action-card"
+    >
+
+        <i class="fa-solid fa-store"></i>
+
+        <div>
+
+            <h3>
+                VIEW STORE
+            </h3>
+
+            <p>
+                Open the customer storefront.
+            </p>
+
+        </div>
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+    </a>
+
+
+
+    <a
+        href="order-history.html"
+        class="checkout-card admin-action-card"
+    >
+
+        <i class="fa-solid fa-clock-rotate-left"></i>
+
+        <div>
+
+            <h3>
+                ORDER HISTORY
+            </h3>
+
+            <p>
+                View customer order history.
+            </p>
+
+        </div>
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+    </a>
+
+</div>
+
+
+
+<!-- =================================================
+     PRODUCT MANAGEMENT
+================================================== -->
+
+<section class="admin-products-section">
+
+
+<div class="checkout-title admin-section-title">
+
+    <span class="section-eyebrow">
+        STORE MANAGEMENT
+    </span>
+
+    <h2>
+        PRODUCT MANAGEMENT
+    </h2>
+
+</div>
+
+
+
+<div class="checkout-card">
+
+
+    <!-- TOOLBAR -->
+
+    <div class="admin-products-toolbar">
+
+
+        <div class="admin-products-search">
+
+            <input
+                type="text"
+                id="product-search"
+                placeholder="Search products..."
+                autocomplete="off"
+            >
+
+        </div>
+
+
+        <div class="admin-products-filter">
+
+            <select id="product-category-filter">
+
+                <option value="all">
+                    All Categories
+                </option>
+
+                <option value="tshirt">
+                    T-Shirts
+                </option>
+
+                <option value="hoodie">
+                    Hoodies
+                </option>
+
+                <option value="pants">
+                    Pants
+                </option>
+
+                <option value="shoes">
+                    Shoes
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            id="add-product-button"
+        >
+
+            <i class="fa-solid fa-plus"></i>
+
+            ADD PRODUCT
+
+        </button>
+
+    </div>
+
+
+
+    <!-- PRODUCTS -->
+
+    <div
+        id="admin-product-list"
+        class="admin-product-list"
+    >
+    </div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =================================================
+     RECENT ORDERS
+================================================== -->
+
+<div class="checkout-title admin-section-title">
+
+    <span class="section-eyebrow">
+        RECENT ACTIVITY
+    </span>
+
+    <h2>
+        RECENT ORDERS
+    </h2>
+
+</div>
+
+
+<div
+    id="recent-orders"
+    class="admin-recent-orders"
+>
+</div>
+
+
+<div
+    id="no-recent-orders"
+    class="checkout-card"
+    style="display:none;"
+>
+
+    <div class="order-success">
+
+        <div class="order-success-icon">
+
+            <i class="fa-solid fa-box-open"></i>
+
+        </div>
+
+        <h2>
+            NO ORDERS YET
+        </h2>
+
+        <p>
+            Your store has not received any orders yet.
+        </p>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     PRODUCT MODAL
+====================================================== -->
+
+<div
+    class="product-modal-overlay"
+    id="product-modal"
+>
+
+    <div class="product-modal">
+
+
+        <div class="product-modal-header">
+
+            <h2 id="product-modal-title">
+                ADD PRODUCT
+            </h2>
+
+
+            <button
+                type="button"
+                class="product-modal-close"
+                id="product-modal-close"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <form
+            class="product-form"
+            id="product-form"
+        >
+
+
+            <input
+                type="hidden"
+                id="product-edit-id"
+            >
+
+
+            <div class="product-form-group">
+
+                <label for="product-name">
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="product-name"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="product-form-group">
+
+                <label for="product-category">
+                    Category
+                </label>
+
+                <select
+                    id="product-category"
+                    required
+                >
+
+                    <option value="tshirt">
+                        T-Shirt
+                    </option>
+
+                    <option value="hoodie">
+                        Hoodie
+                    </option>
+
+                    <option value="pants">
+                        Pants
+                    </option>
+
+                    <option value="shoes">
+                        Shoes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="product-form-row">
+
+
+                <div class="product-form-group">
+
+                    <label for="product-price">
+                        Price
+                    </label>
+
+                    <input
+                        type="number"
+                        id="product-price"
+                        min="0"
+                        step="1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="product-form-group">
+
+                    <label for="product-stock">
+                        Stock
+                    </label>
+
+                    <input
+                        type="number"
+                        id="product-stock"
+                        min="0"
+                        step="1"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <div class="product-form-group">
+
+                <label for="product-image">
+                    Image Path
+                </label>
+
+                <input
+                    type="text"
+                    id="product-image"
+                    placeholder="assets/images/product.png"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="product-form-group">
+
+                <label for="product-badge">
+                    Badge
+                </label>
+
+                <input
+                    type="text"
+                    id="product-badge"
+                    placeholder="NEW"
+                >
+
+            </div>
+
+
+
+            <div class="product-form-actions">
+
+                <button
+                    type="button"
+                    class="admin-cancel-btn"
+                    id="product-cancel"
+                >
+                    CANCEL
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    SAVE PRODUCT
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-bottom">
+
+        <p>
+            © 2026 PEGASUS WEAR |
+            All Rights Reserved
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+
+/* =====================================================
+   ORDERS
+===================================================== */
+
+let orders =
+    JSON.parse(
+        localStorage.getItem(
+            "pegasusOrders"
+        )
+    ) || [];
+
+
+
+/* =====================================================
+   DASHBOARD DOM
+===================================================== */
+
+const totalOrders =
+    document.getElementById(
+        "stat-total-orders"
+    );
+
+const pendingOrders =
+    document.getElementById(
+        "stat-pending"
+    );
+
+const confirmedOrders =
+    document.getElementById(
+        "stat-confirmed"
+    );
+
+const shippedOrders =
+    document.getElementById(
+        "stat-shipped"
+    );
+
+const deliveredOrders =
+    document.getElementById(
+        "stat-delivered"
+    );
+
+const cancelledOrders =
+    document.getElementById(
+        "stat-cancelled"
+    );
+
+const revenueElement =
+    document.getElementById(
+        "stat-revenue"
+    );
+
+const recentOrders =
+    document.getElementById(
+        "recent-orders"
+    );
+
+const noRecentOrders =
+    document.getElementById(
+        "no-recent-orders"
+    );
+
+
+
+/* =====================================================
+   UPDATE DASHBOARD
+===================================================== */
+
+function updateDashboard() {
+
+    let pending = 0;
+    let confirmed = 0;
+    let shipped = 0;
+    let delivered = 0;
+    let cancelled = 0;
+    let revenue = 0;
+
+
+    orders.forEach(
+        (order) => {
+
+            const status =
+                order.status ||
+                "pending";
+
+
+            if (status === "pending") {
+
+                pending++;
+
+            }
+
+            else if (status === "confirmed") {
+
+                confirmed++;
+
+            }
+
+            else if (status === "shipped") {
+
+                shipped++;
+
+            }
+
+            else if (status === "delivered") {
+
+                delivered++;
+
+            }
+
+            else if (status === "cancelled") {
+
+                cancelled++;
+
+            }
+
+
+            if (status !== "cancelled") {
+
+                revenue +=
+                    Number(
+                        order.total
+                    ) || 0;
+
+            }
+
+        }
+    );
+
+
+    if (totalOrders) {
+
+        totalOrders.textContent =
+            orders.length;
+
+    }
+
+
+    if (pendingOrders) {
+
+        pendingOrders.textContent =
+            pending;
+
+    }
+
+
+    if (confirmedOrders) {
+
+        confirmedOrders.textContent =
+            confirmed;
+
+    }
+
+
+    if (shippedOrders) {
+
+        shippedOrders.textContent =
+            shipped;
+
+    }
+
+
+    if (deliveredOrders) {
+
+        deliveredOrders.textContent =
+            delivered;
+
+    }
+
+
+    if (cancelledOrders) {
+
+        cancelledOrders.textContent =
+            cancelled;
+
+    }
+
+
+    if (revenueElement) {
+
+        revenueElement.textContent =
+            `${revenue} EGP`;
+
+    }
+
+}
+
+
+
+/* =====================================================
+   STATUS LABEL
+===================================================== */
+
+function getStatusLabel(status) {
+
+    return (
+        status
+            .charAt(0)
+            .toUpperCase() +
+        status.slice(1)
+    );
+
+}
+
+
+
+/* =====================================================
+   RECENT ORDERS
+===================================================== */
+
+function renderRecentOrders() {
+
+    if (!recentOrders) return;
+
+
+    recentOrders.innerHTML = "";
+
+
+    if (
+        !Array.isArray(orders) ||
+        orders.length === 0
+    ) {
+
+        if (noRecentOrders) {
+
+            noRecentOrders.style.display =
+                "block";
+
+        }
+
+        return;
+
+    }
+
+
+    if (noRecentOrders) {
+
+        noRecentOrders.style.display =
+            "none";
+
+    }
+
+
+    const latestOrders =
+        [...orders]
+            .reverse()
+            .slice(0, 5);
+
+
+    latestOrders.forEach(
+        (order) => {
+
+            const customer =
+                order.customer || {};
+
+
+            const customerName =
+                `${customer.firstName || ""} ${customer.lastName || ""}`
+                    .trim() ||
+                "Customer";
+
+
+            const status =
+                order.status ||
+                "pending";
+
+
+            const total =
+                Number(
+                    order.total
+                ) || 0;
+
+
+            let date = "—";
+
+
+            if (order.date) {
+
+                date =
+                    new Date(
+                        order.date
+                    ).toLocaleString(
+                        "en-GB",
+                        {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        }
+                    );
+
+            }
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "checkout-card admin-recent-order";
+
+
+            card.innerHTML = `
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        ${order.id || "ORDER"}
+                    </span>
+
+                    <h3>
+                        ${customerName}
+                    </h3>
+
+                    <p>
+                        ${date}
+                    </p>
+
+                </div>
+
+
+                <div class="admin-recent-order-right">
+
+                    <span
+                        class="order-status order-status-${status}"
+                    >
+                        ${getStatusLabel(status)}
+                    </span>
+
+                    <strong>
+                        ${total} EGP
+                    </strong>
+
+                    <button
+                        type="button"
+                        class="btn btn-primary dashboard-view-order"
+                    >
+                        VIEW
+                    </button>
+
+                </div>
+
+            `;
+
+
+            const viewButton =
+                card.querySelector(
+                    ".dashboard-view-order"
+                );
+
+
+            if (viewButton) {
+
+                viewButton.addEventListener(
+                    "click",
+                    () => {
+
+                        localStorage.setItem(
+                            "pegasusSelectedOrder",
+                            JSON.stringify(order)
+                        );
+
+
+                        window.location.href =
+                            "order-confirmation.html";
+
+                    }
+                );
+
+            }
+
+
+            recentOrders.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
+const PRODUCTS_KEY =
+    "pegasusProducts";
+
+
+let products =
+    JSON.parse(
+        localStorage.getItem(
+            PRODUCTS_KEY
+        )
+    );
+
+
+/*
+    If products don't exist yet,
+    create them from the current
+    Pegasus products.
+*/
+
+if (
+    !Array.isArray(products) ||
+    products.length === 0
+) {
+
+    products = [
+
+        {
+            id: "the-gate-tshirt",
+            name: "The Gate T-Shirt",
+            category: "tshirt",
+            price: 549,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/01_The_Gate_TShirt.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-gate-hoodie",
+            name: "The Gate Hoodie",
+            category: "hoodie",
+            price: 749,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/01_The_Gate_Hoodie.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-gate-pants",
+            name: "The Gate Pants",
+            category: "pants",
+            price: 549,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/01_The_Gate_Pants.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-gate-shoes",
+            name: "The Gate Shoes",
+            category: "shoes",
+            price: 699,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/01_The_Gate_Shoes.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-ascension-tshirt",
+            name: "The Ascension T-Shirt",
+            category: "tshirt",
+            price: 549,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/02_The_Ascension_TShirt.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-ascension-hoodie",
+            name: "The Ascension Hoodie",
+            category: "hoodie",
+            price: 749,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/02_The_Ascension_Hoodie.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-ascension-pants",
+            name: "The Ascension Pants",
+            category: "pants",
+            price: 549,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/02_The_Ascension_Pants.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-ascension-shoes",
+            name: "The Ascension Shoes",
+            category: "shoes",
+            price: 699,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/02_The_Ascension_Shoes.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-empty-throne-tshirt",
+            name: "The Empty Throne T-Shirt",
+            category: "tshirt",
+            price: 549,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/03_The_Empty_Throne_TShirt.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-empty-throne-hoodie",
+            name: "The Empty Throne Hoodie",
+            category: "hoodie",
+            price: 749,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/03_The_Empty_Throne_Hoodie.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-empty-throne-pants",
+            name: "The Empty Throne Pants",
+            category: "pants",
+            price: 549,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/03_The_Empty_Throne_Pants.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-empty-throne-shoes",
+            name: "The Empty Throne Shoes",
+            category: "shoes",
+            price: 699,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/03_The_Empty_Throne_Shoes.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-ancient-crest-tshirt",
+            name: "The Ancient Crest T-Shirt",
+            category: "tshirt",
+            price: 549,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/04_The_Ancient_Crest_TShirt.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-ancient-crest-hoodie",
+            name: "The Ancient Crest Hoodie",
+            category: "hoodie",
+            price: 749,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/04_The_Ancient_Crest_Hoodie.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-ancient-crest-pants",
+            name: "The Ancient Crest Pants",
+            category: "pants",
+            price: 549,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/04_The_Ancient_Crest_Pants.png",
+            badge: "NEW"
+        },
+
+        {
+            id: "the-ancient-crest-shoes",
+            name: "The Ancient Crest Shoes",
+            category: "shoes",
+            price: 699,
+            stock: 10,
+            image:
+                "assets/images/Pegasus_Shadow_Rise_16_Product_Images/04_The_Ancient_Crest_Shoes.png",
+            badge: "NEW"
+        }
+
+    ];
+
+
+    localStorage.setItem(
+        PRODUCTS_KEY,
+        JSON.stringify(products)
+    );
+
+}
+
+
+
+/* =====================================================
+   PRODUCT DOM
+===================================================== */
+
+const productList =
+    document.getElementById(
+        "admin-product-list"
+    );
+
+
+const productSearch =
+    document.getElementById(
+        "product-search"
+    );
+
+
+const productCategoryFilter =
+    document.getElementById(
+        "product-category-filter"
+    );
+
+
+const addProductButton =
+    document.getElementById(
+        "add-product-button"
+    );
+
+
+const productModal =
+    document.getElementById(
+        "product-modal"
+    );
+
+
+const productModalTitle =
+    document.getElementById(
+        "product-modal-title"
+    );
+
+
+const productModalClose =
+    document.getElementById(
+        "product-modal-close"
+    );
+
+
+const productCancel =
+    document.getElementById(
+        "product-cancel"
+    );
+
+
+const productForm =
+    document.getElementById(
+        "product-form"
+    );
+
+
+
+const productEditId =
+    document.getElementById(
+        "product-edit-id"
+    );
+
+
+const productName =
+    document.getElementById(
+        "product-name"
+    );
+
+
+const productCategory =
+    document.getElementById(
+        "product-category"
+    );
+
+
+const productPrice =
+    document.getElementById(
+        "product-price"
+    );
+
+
+const productStock =
+    document.getElementById(
+        "product-stock"
+    );
+
+
+const productImage =
+    document.getElementById(
+        "product-image"
+    );
+
+
+const productBadge =
+    document.getElementById(
+        "product-badge"
+    );
+
+
+
+/* =====================================================
+   SAVE PRODUCTS
+===================================================== */
+
+function saveProducts() {
+
+    localStorage.setItem(
+        PRODUCTS_KEY,
+        JSON.stringify(products)
+    );
+
+}
+
+
+
+/* =====================================================
+   CATEGORY LABEL
+===================================================== */
+
+function getCategoryLabel(
+    category
+) {
+
+    const labels = {
+
+        tshirt: "T-Shirt",
+
+        hoodie: "Hoodie",
+
+        pants: "Pants",
+
+        shoes: "Shoes"
+
+    };
+
+
+    return (
+        labels[category] ||
+        category
+    );
+
+}
+
+
+
+/* =====================================================
+   STOCK CLASS
+===================================================== */
+
+function getStockClass(
+    stock
+) {
+
+    if (stock <= 0) {
+
+        return "stock-out";
+
+    }
+
+
+    if (stock <= 5) {
+
+        return "stock-low";
+
+    }
+
+
+    return "stock-good";
+
+}
+
+
+
+/* =====================================================
+   RENDER PRODUCTS
+===================================================== */
+
+function renderProducts() {
+
+    if (!productList) return;
+
+
+    const search =
+        (
+            productSearch?.value ||
+            ""
+        )
+            .toLowerCase()
+            .trim();
+
+
+    const category =
+        productCategoryFilter?.value ||
+        "all";
+
+
+    const filteredProducts =
+        products.filter(
+            (product) => {
+
+                const matchesSearch =
+                    product.name
+                        .toLowerCase()
+                        .includes(search);
+
+
+                const matchesCategory =
+                    category === "all" ||
+                    product.category ===
+                    category;
+
+
+                return (
+                    matchesSearch &&
+                    matchesCategory
+                );
+
+            }
+        );
+
+
+    productList.innerHTML = "";
+
+
+    if (
+        filteredProducts.length ===
+        0
+    ) {
+
+        productList.innerHTML = `
+
+            <div class="admin-product-empty">
+
+                <i class="fa-solid fa-box-open"></i>
+
+                <h3>
+                    No Products Found
+                </h3>
+
+                <p>
+                    Try another search or add a new product.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    filteredProducts.forEach(
+        (product) => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "admin-product-row";
+
+
+            const stock =
+                Number(
+                    product.stock
+                ) || 0;
+
+
+            const stockText =
+                stock <= 0
+                    ? "Out of Stock"
+                    : `${stock} in stock`;
+
+
+            row.innerHTML = `
+
+                <img
+                    class="admin-product-image"
+                    src="${product.image}"
+                    alt="${product.name}"
+                    onerror="this.src='assets/images1/arise.png'"
+                >
+
+
+                <div class="admin-product-info">
+
+                    <h3>
+                        ${product.name}
+                    </h3>
+
+                    <p>
+                        ID: ${product.id}
+                    </p>
+
+                </div>
+
+
+                <div class="admin-product-category">
+
+                    ${getCategoryLabel(
+                        product.category
+                    )}
+
+                </div>
+
+
+                <div class="admin-product-price">
+
+                    ${Number(product.price) || 0} EGP
+
+                </div>
+
+
+                <div
+                    class="admin-product-stock ${getStockClass(stock)}"
+                >
+
+                    ${stockText}
+
+                </div>
+
+
+                <div class="admin-product-actions">
+
+                    <button
+                        type="button"
+                        class="admin-product-action edit"
+                        data-id="${product.id}"
+                        title="Edit"
+                    >
+
+                        <i class="fa-solid fa-pen"></i>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="admin-product-action delete"
+                        data-id="${product.id}"
+                        title="Delete"
+                    >
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            const editButton =
+                row.querySelector(
+                    ".edit"
+                );
+
+
+            const deleteButton =
+                row.querySelector(
+                    ".delete"
+                );
+
+
+            editButton.addEventListener(
+                "click",
+                () => {
+
+                    openEditProduct(
+                        product.id
+                    );
+
+                }
+            );
+
+
+            deleteButton.addEventListener(
+                "click",
+                () => {
+
+                    deleteProduct(
+                        product.id
+                    );
+
+                }
+            );
+
+
+            productList.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =====================================================
+   OPEN ADD PRODUCT
+===================================================== */
+
+function openAddProduct() {
+
+    productForm.reset();
+
+
+    productEditId.value =
+        "";
+
+
+    productModalTitle.textContent =
+        "ADD PRODUCT";
+
+
+    productModal.classList.add(
+        "active"
+    );
+
+
+    productName.focus();
+
+}
+
+
+
+/* =====================================================
+   OPEN EDIT PRODUCT
+===================================================== */
+
+function openEditProduct(
+    id
+) {
+
+    const product =
+        products.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!product) return;
+
+
+    productEditId.value =
+        product.id;
+
+
+    productName.value =
+        product.name;
+
+
+    productCategory.value =
+        product.category;
+
+
+    productPrice.value =
+        product.price;
+
+
+    productStock.value =
+        product.stock;
+
+
+    productImage.value =
+        product.image;
+
+
+    productBadge.value =
+        product.badge || "";
+
+
+    productModalTitle.textContent =
+        "EDIT PRODUCT";
+
+
+    productModal.classList.add(
+        "active"
+    );
+
+
+    productName.focus();
+
+}
+
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+function closeProductModal() {
+
+    productModal.classList.remove(
+        "active"
+    );
+
+}
+
+
+
+/* =====================================================
+   ADD / UPDATE PRODUCT
+===================================================== */
+
+productForm.addEventListener(
+    "submit",
+    (event) => {
+
+        event.preventDefault();
+
+
+        const editId =
+            productEditId.value.trim();
+
+
+        const name =
+            productName.value.trim();
+
+
+        const category =
+            productCategory.value;
+
+
+        const price =
+            Number(
+                productPrice.value
+            );
+
+
+        const stock =
+            Number(
+                productStock.value
+            );
+
+
+        const image =
+            productImage.value.trim();
+
+
+        const badge =
+            productBadge.value.trim();
+
+
+        if (!name) {
+
+            alert(
+                "Please enter a product name."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !Number.isFinite(price) ||
+            price < 0
+        ) {
+
+            alert(
+                "Please enter a valid price."
+            );
+
+            return;
+
+        }
+
+
+        if (
+            !Number.isFinite(stock) ||
+            stock < 0
+        ) {
+
+            alert(
+                "Please enter a valid stock quantity."
+            );
+
+            return;
+
+        }
+
+
+        /* EDIT */
+
+        if (editId) {
+
+            const product =
+                products.find(
+                    item =>
+                        item.id ===
+                        editId
+                );
+
+
+            if (!product) return;
+
+
+            product.name =
+                name;
+
+            product.category =
+                category;
+
+            product.price =
+                price;
+
+            product.stock =
+                stock;
+
+            product.image =
+                image;
+
+            product.badge =
+                badge;
+
+
+        }
+
+
+        /* ADD */
+
+        else {
+
+            const newProduct = {
+
+                id:
+                    generateProductId(
+                        name
+                    ),
+
+                name,
+
+                category,
+
+                price,
+
+                stock,
+
+                image,
+
+                badge
+
+            };
+
+
+            products.unshift(
+                newProduct
+            );
+
+        }
+
+
+        saveProducts();
+
+        renderProducts();
+
+        closeProductModal();
+
+    }
+);
+
+
+
+/* =====================================================
+   GENERATE PRODUCT ID
+===================================================== */
+
+function generateProductId(
+    name
+) {
+
+    let baseId =
+        name
+            .toLowerCase()
+            .trim()
+            .replace(
+                /[^a-z0-9]+/g,
+                "-"
+            )
+            .replace(
+                /^-+|-+$/g,
+                ""
+            );
+
+
+    if (!baseId) {
+
+        baseId =
+            "product";
+
+    }
+
+
+    let id =
+        baseId;
+
+    let number =
+        2;
+
+
+    while (
+        products.some(
+            product =>
+                product.id === id
+        )
+    ) {
+
+        id =
+            `${baseId}-${number}`;
+
+        number++;
+
+    }
+
+
+    return id;
+
+}
+
+
+
+/* =====================================================
+   DELETE PRODUCT
+===================================================== */
+
+function deleteProduct(
+    id
+) {
+
+    const product =
+        products.find(
+            item =>
+                item.id === id
+        );
+
+
+    if (!product) return;
+
+
+    const confirmed =
+        confirm(
+            `Delete "${product.name}"?`
+        );
+
+
+    if (!confirmed) return;
+
+
+    products =
+        products.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveProducts();
+
+    renderProducts();
+
+}
+
+
+
+/* =====================================================
+   EVENTS
+===================================================== */
+
+if (addProductButton) {
+
+    addProductButton.addEventListener(
+        "click",
+        openAddProduct
+    );
+
+}
+
+
+if (productModalClose) {
+
+    productModalClose.addEventListener(
+        "click",
+        closeProductModal
+    );
+
+}
+
+
+if (productCancel) {
+
+    productCancel.addEventListener(
+        "click",
+        closeProductModal
+    );
+
+}
+
+
+if (productModal) {
+
+    productModal.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target ===
+                productModal
+            ) {
+
+                closeProductModal();
+
+            }
+
+        }
+    );
+
+}
+
+
+if (productSearch) {
+
+    productSearch.addEventListener(
+        "input",
+        renderProducts
+    );
+
+}
+
+
+if (productCategoryFilter) {
+
+    productCategoryFilter.addEventListener(
+        "change",
+        renderProducts
+    );
+
+}
+
+
+
+/* =====================================================
+   STORAGE REFRESH
+===================================================== */
+
+window.addEventListener(
+    "storage",
+    () => {
+
+        orders =
+            JSON.parse(
+                localStorage.getItem(
+                    "pegasusOrders"
+                )
+            ) || [];
+
+
+        products =
+            JSON.parse(
+                localStorage.getItem(
+                    PRODUCTS_KEY
+                )
+            ) || [];
+
+
+        updateDashboard();
+
+        renderRecentOrders();
+
+        renderProducts();
+
+    }
+);
+
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+updateDashboard();
+
+renderRecentOrders();
+
+renderProducts();
+
+</script>
+
+
+</body>
+
+</html>

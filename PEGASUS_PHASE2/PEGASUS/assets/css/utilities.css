@@ -1,0 +1,41 @@
+/* ========================================
+   UTILITIES
+======================================== */
+
+.container{
+
+    width:min(var(--container),90%);
+
+    margin:auto;
+
+}
+
+.section{
+
+    padding:var(--space-8) 0;
+
+}
+
+.flex{
+
+    display:flex;
+
+}
+
+.grid{
+
+    display:grid;
+
+}
+
+.text-center{
+
+    text-align:center;
+
+}
+
+.hidden{
+
+    display:none;
+
+}

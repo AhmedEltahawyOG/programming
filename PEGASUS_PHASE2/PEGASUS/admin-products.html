@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Products | PEGASUS WEAR</title>
+
+<link
+    rel="stylesheet"
+    href="assets/css/main.css"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+    crossorigin
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+>
+```
+
+</head>
+
+<body>
+
+```
+<!-- =====================================================
+     ADMIN HEADER
+====================================================== -->
+
+<header class="header">
+
+    <div class="container header-container">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            PEGASUS
+        </a>
+
+
+        <nav class="nav">
+
+            <ul class="nav-list">
+
+                <li>
+                    <a href="admin-dashboard.html">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="admin-orders.html">
+                        Orders
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="admin-products.html"
+                        class="active"
+                    >
+                        Products
+                    </a>
+                </li>
+
+                <li>
+                    <a href="shop.html">
+                        Store
+                    </a>
+                </li>
+
+                <li>
+                    <a href="index.html">
+                        Website
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <div class="header-icons">
+
+            <a
+                href="admin-orders.html"
+                class="header-icon"
+                aria-label="Orders"
+            >
+                <i class="fa-solid fa-box"></i>
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     PRODUCTS
+====================================================== -->
+
+<main>
+
+    <section class="checkout section">
+
+        <div class="container">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="checkout-title">
+
+                <span class="section-eyebrow">
+                    PEGASUS WEAR
+                </span>
+
+                <h1>
+                    PRODUCT MANAGEMENT
+                </h1>
+
+                <p>
+                    Manage products, prices and inventory.
+                </p>
+
+            </div>
+
+
+
+            <!-- PRODUCTS HEADER -->
+
+            <div class="admin-products-header">
+
+                <div>
+
+                    <span class="section-eyebrow">
+                        STORE INVENTORY
+                    </span>
+
+                    <h2>
+                        PRODUCTS
+                    </h2>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn btn-primary admin-add-product"
+                    id="add-product-btn"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    ADD PRODUCT
+
+                </button>
+
+            </div>
+
+
+
+            <!-- PRODUCTS -->
+
+            <div
+                class="admin-products"
+                id="admin-products"
+            >
+            </div>
+
+
+
+            <!-- EMPTY STATE -->
+
+            <div
+                class="checkout-card admin-products-empty"
+                id="admin-products-empty"
+                style="display: none;"
+            >
+
+                <i class="fa-solid fa-box-open"></i>
+
+                <h3>
+                    NO PRODUCTS
+                </h3>
+
+                <p>
+                    Your store does not have any products yet.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-bottom">
+
+        <p>
+            © 2026 PEGASUS WEAR |
+            All Rights Reserved
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     PRODUCT MODAL
+====================================================== -->
+
+<div
+    class="admin-product-modal-overlay"
+    id="product-modal-overlay"
+>
+
+    <div
+        class="admin-product-modal"
+        id="product-modal"
+    >
+
+
+        <!-- MODAL HEADER -->
+
+        <div class="admin-product-modal-header">
+
+            <div>
+
+                <span class="section-eyebrow">
+                    PEGASUS WEAR
+                </span>
+
+                <h2 id="product-modal-title">
+                    ADD PRODUCT
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="admin-product-modal-close"
+                id="product-modal-close"
+                aria-label="Close"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FORM
+        ================================================== -->
+
+        <form id="product-form">
+
+
+            <!-- PRODUCT NAME -->
+
+            <div class="admin-form-group">
+
+                <label for="product-name">
+                    Product Name
+                </label>
+
+                <input
+                    type="text"
+                    id="product-name"
+                    name="name"
+                    placeholder="The Gate T-Shirt"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- PRODUCT ID -->
+
+            <div class="admin-form-group">
+
+                <label for="product-id">
+                    Product ID
+                </label>
+
+                <input
+                    type="text"
+                    id="product-id"
+                    name="id"
+                    placeholder="the-gate-tshirt"
+                    required
+                >
+
+                <small>
+                    This ID is used to identify the product across the store.
+                </small>
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div class="admin-form-group">
+
+                <label for="product-category">
+                    Category
+                </label>
+
+                <select
+                    id="product-category"
+                    name="category"
+                    required
+                >
+
+                    <option value="">
+                        Select Category
+                    </option>
+
+                    <option value="tshirt">
+                        T-Shirt
+                    </option>
+
+                    <option value="hoodie">
+                        Hoodie
+                    </option>
+
+                    <option value="pants">
+                        Pants
+                    </option>
+
+                    <option value="shoes">
+                        Shoes
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- PRICE ROW -->
+
+            <div class="admin-form-row">
+
+
+                <div class="admin-form-group">
+
+                    <label for="product-price">
+                        Price
+                    </label>
+
+                    <input
+                        type="number"
+                        id="product-price"
+                        name="price"
+                        min="0"
+                        step="1"
+                        placeholder="549"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="admin-form-group">
+
+                    <label for="product-sale-price">
+                        Sale Price
+                    </label>
+
+                    <input
+                        type="number"
+                        id="product-sale-price"
+                        name="salePrice"
+                        min="0"
+                        step="1"
+                        placeholder="Optional"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STOCK BY SIZE
+            ================================================== -->
+
+            <div class="admin-form-group">
+
+                <label>
+                    Stock By Size
+                </label>
+
+                <div class="admin-stock-sizes">
+
+
+                    <div class="admin-size-stock">
+
+                        <label for="stock-s">
+                            S
+                        </label>
+
+                        <input
+                            type="number"
+                            id="stock-s"
+                            min="0"
+                            step="1"
+                            value="0"
+                        >
+
+                    </div>
+
+
+
+                    <div class="admin-size-stock">
+
+                        <label for="stock-m">
+                            M
+                        </label>
+
+                        <input
+                            type="number"
+                            id="stock-m"
+                            min="0"
+                            step="1"
+                            value="0"
+                        >
+
+                    </div>
+
+
+
+                    <div class="admin-size-stock">
+
+                        <label for="stock-l">
+                            L
+                        </label>
+
+                        <input
+                            type="number"
+                            id="stock-l"
+                            min="0"
+                            step="1"
+                            value="0"
+                        >
+
+                    </div>
+
+
+
+                    <div class="admin-size-stock">
+
+                        <label for="stock-xl">
+                            XL
+                        </label>
+
+                        <input
+                            type="number"
+                            id="stock-xl"
+                            min="0"
+                            step="1"
+                            value="0"
+                        >
+
+                    </div>
+
+
+
+                    <div class="admin-size-stock">
+
+                        <label for="stock-xxl">
+                            XXL
+                        </label>
+
+                        <input
+                            type="number"
+                            id="stock-xxl"
+                            min="0"
+                            step="1"
+                            value="0"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- IMAGE -->
+
+            <div class="admin-form-group">
+
+                <label for="product-image">
+                    Image Path
+                </label>
+
+                <input
+                    type="text"
+                    id="product-image"
+                    name="image"
+                    placeholder="assets/images/product.png"
+                    required
+                >
+
+                <small>
+                    Enter the image path inside your project.
+                </small>
+
+            </div>
+
+
+
+            <!-- BADGE -->
+
+            <div class="admin-form-group">
+
+                <label for="product-badge">
+                    Badge
+                </label>
+
+                <select
+                    id="product-badge"
+                    name="badge"
+                >
+
+                    <option value="">
+                        No Badge
+                    </option>
+
+                    <option value="NEW">
+                        NEW
+                    </option>
+
+                    <option value="SALE">
+                        SALE
+                    </option>
+
+                    <option value="LIMITED">
+                        LIMITED
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- COLLECTION -->
+
+            <div class="admin-form-group">
+
+                <label for="product-collection">
+                    Collection / Chapter
+                </label>
+
+                <input
+                    type="text"
+                    id="product-collection"
+                    name="collection"
+                    placeholder="THE GATE"
+                >
+
+            </div>
+
+
+
+            <!-- ACTIONS -->
+
+            <div class="admin-product-modal-actions">
+
+                <button
+                    type="button"
+                    class="btn admin-product-cancel"
+                    id="product-modal-cancel"
+                >
+                    CANCEL
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+
+                    <i class="fa-solid fa-check"></i>
+
+                    SAVE PRODUCT
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+
+    /* =====================================================
+       PRODUCT STORAGE
+    ===================================================== */
+
+    const PRODUCT_STORAGE_KEY =
+        "pegasusProducts";
+
+
+    let products =
+        JSON.parse(
+            localStorage.getItem(
+                PRODUCT_STORAGE_KEY
+            )
+        ) || [];
+
+
+
+    /* =====================================================
+       DOM
+    ===================================================== */
+
+    const productsContainer =
+        document.getElementById(
+            "admin-products"
+        );
+
+
+    const emptyState =
+        document.getElementById(
+            "admin-products-empty"
+        );
+
+
+    const addProductButton =
+        document.getElementById(
+            "add-product-btn"
+        );
+
+
+
+    /* =====================================================
+       SAVE PRODUCTS
+    ===================================================== */
+
+    function saveProducts() {
+
+        localStorage.setItem(
+            PRODUCT_STORAGE_KEY,
+            JSON.stringify(products)
+        );
+
+    }
+
+
+
+    /* =====================================================
+       GET TOTAL STOCK
+    ===================================================== */
+
+    function getTotalStock(stock) {
+
+        if (
+            !stock ||
+            typeof stock !== "object"
+        ) {
+
+            return 0;
+
+        }
+
+
+        return Object.values(stock).reduce(
+            (total, quantity) => {
+
+                return total +
+                    (Number(quantity) || 0);
+
+            },
+            0
+        );
+
+    }
+
+
+
+    /* =====================================================
+       STOCK STATUS
+    ===================================================== */
+
+    function getStockClass(stock) {
+
+        const totalStock =
+            getTotalStock(stock);
+
+
+        if (totalStock <= 0) {
+
+            return "out-stock";
+
+        }
+
+
+        if (totalStock <= 5) {
+
+            return "low-stock";
+
+        }
+
+
+        return "in-stock";
+
+    }
+
+
+    function getStockLabel(stock) {
+
+        const totalStock =
+            getTotalStock(stock);
+
+
+        if (totalStock <= 0) {
+
+            return "Out of Stock";
+
+        }
+
+
+        if (totalStock <= 5) {
+
+            return `Low Stock (${totalStock})`;
+
+        }
+
+
+        return `In Stock (${totalStock})`;
+
+    }
+
+
+
+    /* =====================================================
+       RENDER PRODUCTS
+    ===================================================== */
+
+    function renderProducts() {
+
+        if (!productsContainer) return;
+
+
+        productsContainer.innerHTML = "";
+
+
+        if (
+            !Array.isArray(products) ||
+            products.length === 0
+        ) {
+
+            if (emptyState) {
+
+                emptyState.style.display =
+                    "block";
+
+            }
+
+            return;
+
+        }
+
+
+        if (emptyState) {
+
+            emptyState.style.display =
+                "none";
+
+        }
+
+
+
+        products.forEach(
+            (product) => {
+
+
+                const row =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                row.className =
+                    "checkout-card admin-product-row";
+
+
+                const price =
+                    Number(
+                        product.price
+                    ) || 0;
+
+
+                const stock =
+                    product.stock || {};
+
+
+                const totalStock =
+                    getTotalStock(stock);
+
+
+
+                row.innerHTML = `
+
+                    <img
+                        src="${product.image || "assets/images1/arise.png"}"
+                        alt="${product.name || "Product"}"
+                        class="admin-product-image"
+                        onerror="this.src='assets/images1/arise.png'"
+                    >
+
+
+                    <div class="admin-product-info">
+
+                        <h3>
+                            ${product.name || "Unnamed Product"}
+                        </h3>
+
+                        <span>
+                            ${product.category || "Uncategorized"}
+                        </span>
+
+                    </div>
+
+
+                    <div class="admin-product-data">
+
+                        <span>
+                            Price
+                        </span>
+
+                        <strong>
+                            ${price} EGP
+                        </strong>
+
+                    </div>
+
+
+                    <div class="admin-product-data">
+
+                        <span>
+                            Stock
+                        </span>
+
+                        <span
+                            class="admin-stock ${getStockClass(stock)}"
+                        >
+                            ${getStockLabel(stock)}
+                        </span>
+
+                    </div>
+
+
+                    <div class="admin-product-data">
+
+                        <span>
+                            ID
+                        </span>
+
+                        <strong>
+                            ${product.id || "—"}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="admin-product-actions">
+
+                        <button
+                            type="button"
+                            class="admin-product-action"
+                            title="Edit Product"
+                            data-action="edit"
+                            data-id="${product.id}"
+                        >
+
+                            <i class="fa-solid fa-pen"></i>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="admin-product-action"
+                            title="Delete Product"
+                            data-action="delete"
+                            data-id="${product.id}"
+                        >
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                productsContainer.appendChild(
+                    row
+                );
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       PRODUCT MODAL
+    ===================================================== */
+
+    const productModalOverlay =
+        document.getElementById(
+            "product-modal-overlay"
+        );
+
+
+    const productModalTitle =
+        document.getElementById(
+            "product-modal-title"
+        );
+
+
+    const productModalClose =
+        document.getElementById(
+            "product-modal-close"
+        );
+
+
+    const productModalCancel =
+        document.getElementById(
+            "product-modal-cancel"
+        );
+
+
+    const productForm =
+        document.getElementById(
+            "product-form"
+        );
+
+
+    let editingProductId = null;
+
+
+
+    /* =====================================================
+       OPEN MODAL
+    ===================================================== */
+
+    function openProductModal(
+        product = null
+    ) {
+
+        if (!productModalOverlay) return;
+
+
+        productModalOverlay.classList.add(
+            "active"
+        );
+
+
+        if (product) {
+
+            editingProductId =
+                String(product.id);
+
+
+            productModalTitle.textContent =
+                "EDIT PRODUCT";
+
+
+            document.getElementById(
+                "product-name"
+            ).value =
+                product.name || "";
+
+
+            document.getElementById(
+                "product-id"
+            ).value =
+                product.id || "";
+
+
+            document.getElementById(
+                "product-category"
+            ).value =
+                product.category || "";
+
+
+            document.getElementById(
+                "product-price"
+            ).value =
+                product.price ?? "";
+
+
+            document.getElementById(
+                "product-sale-price"
+            ).value =
+                product.salePrice ?? "";
+
+
+
+            /* STOCK BY SIZE */
+
+            const stock =
+                product.stock || {};
+
+
+            document.getElementById(
+                "stock-s"
+            ).value =
+                Number(stock.S) || 0;
+
+
+            document.getElementById(
+                "stock-m"
+            ).value =
+                Number(stock.M) || 0;
+
+
+            document.getElementById(
+                "stock-l"
+            ).value =
+                Number(stock.L) || 0;
+
+
+            document.getElementById(
+                "stock-xl"
+            ).value =
+                Number(stock.XL) || 0;
+
+
+            document.getElementById(
+                "stock-xxl"
+            ).value =
+                Number(stock.XXL) || 0;
+
+
+
+            document.getElementById(
+                "product-image"
+            ).value =
+                product.image || "";
+
+
+            document.getElementById(
+                "product-badge"
+            ).value =
+                product.badge || "";
+
+
+            document.getElementById(
+                "product-collection"
+            ).value =
+                product.collection || "";
+
+        }
+
+        else {
+
+            editingProductId = null;
+
+
+            productModalTitle.textContent =
+                "ADD PRODUCT";
+
+
+            productForm.reset();
+
+
+            /* RESET STOCK */
+
+            document.getElementById(
+                "stock-s"
+            ).value = 0;
+
+
+            document.getElementById(
+                "stock-m"
+            ).value = 0;
+
+
+            document.getElementById(
+                "stock-l"
+            ).value = 0;
+
+
+            document.getElementById(
+                "stock-xl"
+            ).value = 0;
+
+
+            document.getElementById(
+                "stock-xxl"
+            ).value = 0;
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       CLOSE MODAL
+    ===================================================== */
+
+    function closeProductModal() {
+
+        if (!productModalOverlay) return;
+
+
+        productModalOverlay.classList.remove(
+            "active"
+        );
+
+
+        editingProductId = null;
+
+    }
+
+
+    if (productModalClose) {
+
+        productModalClose.addEventListener(
+            "click",
+            closeProductModal
+        );
+
+    }
+
+
+    if (productModalCancel) {
+
+        productModalCancel.addEventListener(
+            "click",
+            closeProductModal
+        );
+
+    }
+
+
+
+    /* CLICK OUTSIDE */
+
+    if (productModalOverlay) {
+
+        productModalOverlay.addEventListener(
+            "click",
+            (event) => {
+
+                if (
+                    event.target ===
+                    productModalOverlay
+                ) {
+
+                    closeProductModal();
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* ESCAPE */
+
+    document.addEventListener(
+        "keydown",
+        (event) => {
+
+            if (
+                event.key === "Escape" &&
+                productModalOverlay?.classList.contains(
+                    "active"
+                )
+            ) {
+
+                closeProductModal();
+
+            }
+
+        }
+    );
+
+
+
+    /* =====================================================
+       ADD PRODUCT
+    ===================================================== */
+
+    if (addProductButton) {
+
+        addProductButton.addEventListener(
+            "click",
+            () => {
+
+                openProductModal();
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       SAVE PRODUCT
+    ===================================================== */
+
+    if (productForm) {
+
+        productForm.addEventListener(
+            "submit",
+            (event) => {
+
+                event.preventDefault();
+
+
+                const name =
+                    document.getElementById(
+                        "product-name"
+                    ).value.trim();
+
+
+                const id =
+                    document.getElementById(
+                        "product-id"
+                    ).value.trim();
+
+
+                const category =
+                    document.getElementById(
+                        "product-category"
+                    ).value;
+
+
+                const price =
+                    Number(
+                        document.getElementById(
+                            "product-price"
+                        ).value
+                    );
+
+
+                const salePriceInput =
+                    document.getElementById(
+                        "product-sale-price"
+                    ).value;
+
+
+                const salePrice =
+                    salePriceInput === ""
+                        ? null
+                        : Number(
+                            salePriceInput
+                        );
+
+
+
+                /* STOCK BY SIZE */
+
+                const stock = {
+
+                    S:
+                        Number(
+                            document.getElementById(
+                                "stock-s"
+                            ).value
+                        ) || 0,
+
+                    M:
+                        Number(
+                            document.getElementById(
+                                "stock-m"
+                            ).value
+                        ) || 0,
+
+                    L:
+                        Number(
+                            document.getElementById(
+                                "stock-l"
+                            ).value
+                        ) || 0,
+
+                    XL:
+                        Number(
+                            document.getElementById(
+                                "stock-xl"
+                            ).value
+                        ) || 0,
+
+                    XXL:
+                        Number(
+                            document.getElementById(
+                                "stock-xxl"
+                            ).value
+                        ) || 0
+
+                };
+
+
+
+                const image =
+                    document.getElementById(
+                        "product-image"
+                    ).value.trim();
+
+
+                const badge =
+                    document.getElementById(
+                        "product-badge"
+                    ).value;
+
+
+                const collection =
+                    document.getElementById(
+                        "product-collection"
+                    ).value.trim();
+
+
+
+                /* =================================================
+                   VALIDATION
+                ================================================== */
+
+                if (
+                    !name ||
+                    !id ||
+                    !category
+                ) {
+
+                    alert(
+                        "Please complete all required fields."
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    Number.isNaN(price) ||
+                    price < 0
+                ) {
+
+                    alert(
+                        "Please enter a valid price."
+                    );
+
+                    return;
+
+                }
+
+
+                const stockValues =
+                    Object.values(stock);
+
+
+                if (
+                    stockValues.some(
+                        (value) =>
+                            Number.isNaN(
+                                value
+                            ) ||
+                            value < 0
+                    )
+                ) {
+
+                    alert(
+                        "Please enter valid stock quantities."
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    salePrice !== null &&
+                    (
+                        Number.isNaN(
+                            salePrice
+                        ) ||
+                        salePrice < 0
+                    )
+                ) {
+
+                    alert(
+                        "Please enter a valid sale price."
+                    );
+
+                    return;
+
+                }
+
+
+
+                /* =================================================
+                   EDIT PRODUCT
+                ================================================== */
+
+                if (
+                    editingProductId !== null
+                ) {
+
+                    const index =
+                        products.findIndex(
+                            (product) =>
+                                String(
+                                    product.id
+                                ) ===
+                                String(
+                                    editingProductId
+                                )
+                        );
+
+
+                    if (index !== -1) {
+
+                        products[index] = {
+
+                            ...products[index],
+
+                            id,
+
+                            name,
+
+                            category,
+
+                            price,
+
+                            salePrice,
+
+                            stock,
+
+                            image,
+
+                            badge,
+
+                            collection
+
+                        };
+
+                    }
+
+                }
+
+
+
+                /* =================================================
+                   ADD PRODUCT
+                ================================================== */
+
+                else {
+
+                    const exists =
+                        products.some(
+                            (product) =>
+                                String(
+                                    product.id
+                                ) ===
+                                String(id)
+                        );
+
+
+                    if (exists) {
+
+                        alert(
+                            "A product with this ID already exists."
+                        );
+
+                        return;
+
+                    }
+
+
+                    products.push({
+
+                        id,
+
+                        name,
+
+                        category,
+
+                        price,
+
+                        salePrice,
+
+                        stock,
+
+                        image,
+
+                        badge,
+
+                        collection
+
+                    });
+
+                }
+
+
+
+                /* =================================================
+                   SAVE
+                ================================================== */
+
+                saveProducts();
+
+                renderProducts();
+
+                closeProductModal();
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       PRODUCT ACTIONS
+    ===================================================== */
+
+    if (productsContainer) {
+
+        productsContainer.addEventListener(
+            "click",
+            (event) => {
+
+
+                const button =
+                    event.target.closest(
+                        ".admin-product-action"
+                    );
+
+
+                if (!button) return;
+
+
+                const id =
+                    button.dataset.id;
+
+
+                const action =
+                    button.dataset.action;
+
+
+                const product =
+                    products.find(
+                        (item) =>
+                            String(
+                                item.id
+                            ) ===
+                            String(id)
+                    );
+
+
+                if (!product) return;
+
+
+
+                /* EDIT */
+
+                if (
+                    action === "edit"
+                ) {
+
+                    openProductModal(
+                        product
+                    );
+
+                }
+
+
+
+                /* DELETE */
+
+                if (
+                    action === "delete"
+                ) {
+
+                    const confirmed =
+                        confirm(
+                            `Delete "${product.name}"?`
+                        );
+
+
+                    if (!confirmed) return;
+
+
+                    products =
+                        products.filter(
+                            (item) =>
+                                String(
+                                    item.id
+                                ) !==
+                                String(id)
+                        );
+
+
+                    saveProducts();
+
+                    renderProducts();
+
+                }
+
+            }
+        );
+
+    }
+
+
+
+    /* =====================================================
+       INITIALIZE
+    ===================================================== */
+
+    renderProducts();
+
+</script>
+
+</body>
+
+</html>

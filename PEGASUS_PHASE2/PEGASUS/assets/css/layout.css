@@ -1,0 +1,498 @@
+/* =========================================================
+   PEGASUS WEAR
+   GLOBAL LAYOUT
+========================================================= */
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 1000;
+
+    padding: 22px 0;
+
+    background: rgba(8, 8, 12, .35);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid transparent;
+
+    transition: var(--transition);
+}
+
+.header.active {
+    background: rgba(9, 9, 9, .94);
+
+    border-bottom-color: rgba(123, 44, 255, .15);
+
+    box-shadow: var(--shadow-purple);
+}
+
+.header-container {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+    flex-shrink: 0;
+
+    color: var(--gold);
+
+    font-size: 28px;
+
+    font-weight: var(--fw-black);
+
+    letter-spacing: 5px;
+
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.logo:hover {
+    color: var(--primary-light);
+
+    text-shadow:
+        0 0 20px rgba(123, 44, 255, .35);
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 1;
+}
+
+.nav-list {
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+}
+
+.nav-list a {
+    position: relative;
+
+    display: inline-block;
+
+    padding: 5px 0;
+
+    color: var(--white);
+
+    font-size: 17px;
+
+    font-weight: var(--fw-medium);
+
+    transition: var(--transition);
+}
+
+.nav-list a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: -5px;
+
+    width: 0;
+    height: 2px;
+
+    background: var(--gold);
+
+    transform: translateX(-50%);
+
+    transition: var(--transition);
+}
+
+.nav-list a:hover {
+    color: var(--gold);
+}
+
+.nav-list a:hover::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   HEADER ICONS
+========================================================= */
+
+.header-icons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 24px;
+
+    flex-shrink: 0;
+
+    color: var(--white);
+
+    font-size: 21px;
+}
+
+.header-icons i {
+    cursor: pointer;
+
+    transition: var(--transition);
+}
+
+.header-icons i:hover {
+    color: var(--gold);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   HEADER ICON BUTTON
+========================================================= */
+
+.header-icon {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    padding: 0;
+
+    background: transparent;
+
+    border: none;
+
+    color: inherit;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+main {
+    width: 100%;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   GLOBAL SECTIONS
+========================================================= */
+
+.section {
+    padding: var(--space-8) 0;
+}
+
+.section-container {
+    width: min(
+        var(--container),
+        90%
+    );
+
+    margin: auto;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    padding: 80px 0 30px;
+
+    background: #050507;
+
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+
+.footer-container {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1fr;
+
+    gap: 50px;
+
+    padding-bottom: 55px;
+}
+
+.footer-box h3 {
+    margin-bottom: 20px;
+
+    color: var(--white);
+
+    font-size: var(--fs-md);
+
+    font-weight: var(--fw-semibold);
+}
+
+.footer-box p {
+    max-width: 350px;
+
+    color: var(--gray);
+
+    font-size: var(--fs-sm);
+
+    line-height: 1.8;
+}
+
+.footer-box ul {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.footer-box li,
+.footer-box a {
+    color: var(--gray);
+
+    font-size: var(--fs-sm);
+
+    transition: var(--transition);
+}
+
+.footer-box a:hover {
+    color: var(--gold);
+
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   FOOTER BRAND
+========================================================= */
+
+.footer-logo {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    color: var(--gold);
+
+    font-size: 25px;
+
+    font-weight: var(--fw-black);
+
+    letter-spacing: 4px;
+}
+
+
+/* =========================================================
+   SOCIAL ICONS
+========================================================= */
+
+.socials {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 22px;
+}
+
+.socials a {
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: var(--surface);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    color: var(--white);
+
+    transition: var(--transition);
+}
+
+.socials a:hover {
+    background: var(--primary);
+
+    border-color: var(--primary-light);
+
+    color: var(--white);
+
+    transform: translateY(-4px);
+
+    box-shadow: var(--shadow-purple);
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
+
+.footer-bottom {
+    padding-top: 25px;
+
+    border-top: 1px solid rgba(255,255,255,.06);
+
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   BACK TO TOP
+========================================================= */
+
+.back-to-top {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 900;
+
+    width: 45px;
+    height: 45px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: var(--gold);
+
+    color: #000;
+
+    font-size: 18px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(15px);
+
+    transition: var(--transition);
+}
+
+.back-to-top.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: var(--primary);
+
+    color: var(--white);
+
+    box-shadow: var(--shadow-purple);
+
+    transform: translateY(-5px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 992px) {
+
+    .footer-container {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 40px 30px;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .footer {
+        padding-top: 65px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .footer-container {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+    }
+
+    .footer-box p {
+        max-width: none;
+    }
+
+    .footer-box ul {
+        align-items: center;
+    }
+
+    .socials {
+        justify-content: center;
+    }
+
+    .back-to-top {
+        right: 18px;
+        bottom: 18px;
+
+        width: 42px;
+        height: 42px;
+    }
+
+}

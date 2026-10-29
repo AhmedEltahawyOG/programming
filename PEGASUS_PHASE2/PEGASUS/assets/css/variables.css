@@ -1,0 +1,87 @@
+
+/* ========================================
+   PEGASUS DESIGN SYSTEM
+   VARIABLES
+======================================== */
+
+:root{
+
+    /* Colors */
+    --background:#07070A;
+    --surface:#101015;
+    --surface-light:#18181F;
+
+    --primary:#7B2CFF;
+    --primary-light:#B06CFF;
+
+    --gold:#D4AF37;
+
+    --white:#FFFFFF;
+    --gray:#B7B7B7;
+    --gray-light:#DDDDDD;
+
+    --danger:#E53935;
+    --success:#2ECC71;
+
+    /* Typography */
+
+
+
+    --font-main:'Poppins',sans-serif;
+
+    --fs-xs:14px;
+    --fs-sm:16px;
+    --fs-md:18px;
+    --fs-lg:22px;
+    --fs-xl:32px;
+    --fs-2xl:48px;
+    --fs-3xl:64px;
+    --fs-4xl:90px;
+
+    /* Font Weight */
+
+    --fw-light:300;
+    --fw-regular:400;
+    --fw-medium:500;
+    --fw-semibold:600;
+    --fw-bold:700;
+    --fw-black:800;
+
+    /* Container */
+
+    --container:1400px;
+
+    /* Border Radius */
+
+    --radius-sm:6px;
+    --radius-md:12px;
+    --radius-lg:18px;
+    --radius-xl:28px;
+    --radius-full:999px;
+
+    /* Transition */
+
+    --transition:.35s ease;
+
+    /* Shadows */
+
+    --shadow-sm:0 5px 15px rgba(0,0,0,.2);
+
+    --shadow-md:0 10px 35px rgba(0,0,0,.3);
+
+    --shadow-purple:0 0 35px rgba(123,44,255,.45);
+
+    --shadow-gold:0 0 35px rgba(212,175,55,.35);
+
+    /* Spacing */
+
+    --space-1:8px;
+    --space-2:16px;
+    --space-3:24px;
+    --space-4:32px;
+    --space-5:48px;
+    --space-6:64px;
+    --space-7:96px;
+    --space-8:120px;
+
+}

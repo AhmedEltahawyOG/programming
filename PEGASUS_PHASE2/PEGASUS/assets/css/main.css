@@ -1,0 +1,382 @@
+/* =========================================================
+   PEGASUS WEAR
+   MAIN CSS
+   Stylesheet Entry Point
+========================================================= */
+
+
+/* =========================================================
+   DESIGN SYSTEM
+========================================================= */
+
+@import url("variables.css");
+
+
+/* =========================================================
+   BASE
+========================================================= */
+
+@import url("reset.css");
+
+
+/* =========================================================
+   UTILITIES
+========================================================= */
+
+@import url("utilities.css");
+
+
+/* =========================================================
+   GLOBAL LAYOUT
+========================================================= */
+
+@import url("layout.css");
+
+
+/* =========================================================
+   COMPONENTS
+========================================================= */
+
+@import url("components.css");
+
+
+/* =========================================================
+   HOME PAGE
+========================================================= */
+
+@import url("home.css");
+
+
+/* =========================================================
+   SHOP PAGE
+========================================================= */
+
+@import url("shop.css");
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@import url("responsive.css");
+
+
+
+/* =========================================================
+   checkout
+========================================================= */
+
+@import url("checkout.css");
+
+@import url("admin-products.css");
+
+/* =========================================================
+   ADMIN DASHBOARD
+========================================================= */
+
+
+/* =========================================================
+   ADMIN SECTION TITLE
+========================================================= */
+
+.admin-section-title {
+    margin-top: 60px;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.admin-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+}
+
+
+.admin-action-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    min-height: 120px;
+
+    padding: 25px;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.admin-action-card:hover {
+    transform: translateY(-4px);
+}
+
+
+.admin-action-card > i:first-child {
+    font-size: 26px;
+    min-width: 30px;
+}
+
+
+.admin-action-card > div {
+    flex: 1;
+}
+
+
+.admin-action-card h3 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+
+.admin-action-card p {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.65;
+    line-height: 1.5;
+}
+
+
+.admin-action-card > i:last-child {
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+
+/* =========================================================
+   RECENT ORDERS
+========================================================= */
+
+.admin-recent-orders {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    margin-bottom: 60px;
+}
+
+
+.admin-recent-order {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 22px 25px;
+
+    margin: 0;
+}
+
+
+.admin-recent-order > div:first-child {
+    flex: 1;
+}
+
+
+.admin-recent-order h3 {
+    margin: 5px 0;
+
+    font-size: 17px;
+}
+
+
+.admin-recent-order p {
+    margin: 0;
+
+    font-size: 13px;
+
+    opacity: 0.6;
+}
+
+
+.admin-recent-order-right {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+}
+
+
+.admin-recent-order-right strong {
+    white-space: nowrap;
+
+    font-size: 16px;
+}
+
+
+.dashboard-view-order {
+    white-space: nowrap;
+
+    padding: 10px 18px;
+}
+
+
+/* =========================================================
+   ORDER STATUS
+========================================================= */
+
+.order-status {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .admin-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .admin-actions {
+        grid-template-columns: 1fr;
+    }
+
+
+    .admin-recent-order {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .admin-recent-order-right {
+        width: 100%;
+
+        justify-content: flex-start;
+    }
+
+
+    .admin-section-title {
+        margin-top: 40px;
+    }
+
+}
+
+/* =========================================================
+   ORDER TRACKING
+========================================================= */
+
+.order-tracking {
+    margin-top: 35px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.tracking-step {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 12px 0;
+
+    opacity: 0.35;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+
+.tracking-step.active,
+.tracking-step.completed {
+    opacity: 1;
+}
+
+
+.tracking-step.active {
+    transform: translateX(5px);
+}
+
+
+.tracking-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+
+
+.tracking-step.active .tracking-icon,
+.tracking-step.completed .tracking-icon {
+    border-color: currentColor;
+}
+
+
+.tracking-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+
+.tracking-content strong {
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+
+.tracking-content span {
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+
+.tracking-line {
+    width: 1px;
+    height: 25px;
+
+    margin-left: 21px;
+
+    background: rgba(255, 255, 255, 0.12);
+}
